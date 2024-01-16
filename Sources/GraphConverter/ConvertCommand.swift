@@ -8,19 +8,42 @@
 import ArgumentParser
 import Foundation
 import GraphModel
+import GraphViz
 import GraphVizAdaptor
 
 @main
 struct ConvertCommand: AsyncParsableCommand {
+    @Option(name: [.short, .customLong("input")], transform: { URL(filePath: $0) })
+    var inputFile: URL
+
+    @Option(name: [.short, .customLong("output")], transform: { URL(filePath: $0) })
+    var outputFile: URL
+    
+    @Option(name: [.short, .customLong("format")], transform: { Format(rawValue: $0)! })
+    var format: GraphViz.Format = .dot
+    
     func run() async throws {
-        // TODO: Load from json file
-        let data = Data()
+        let data = try Data(contentsOf: inputFile)
         let model = try AGGraph(data: data)
-        let graph = Converter.convert(model)
-        let graphData = try await graph.render(using: .dot, to: .dot)
-        // TODO: Use option here
-        if let dot = String(data: data, encoding: .utf8) {
-            print(dot)
+        let graph = Converter.convert(model.graphs[0])
+        let graphData = try await graph.render(using: .dot, to: format)
+        try graphData.write(to: outputFile)
+    }
+    
+    func validate() throws {
+        guard FileManager.default.fileExists(atPath: inputFile.path()) else {
+            throw ValidationError("File does not exist at \(inputFile.path())")
         }
     }
 }
+
+struct ValidationError: LocalizedError {
+    var message: String
+    init(_ message: String) {
+        self.message = message
+    }
+    
+    var errorDescription: String? { message }
+}
+
+extension Format: Codable {}

@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "GraphConverter",
-    platforms: [.macOS(.v12)],
+    platforms: [.macOS(.v13)],
     products: [
         .executable(name: "GraphConverter", targets: ["GraphConverter"]),
         .library(name: "GraphVizAdaptor", targets: ["GraphVizAdaptor"]),

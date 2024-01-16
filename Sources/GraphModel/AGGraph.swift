@@ -18,7 +18,7 @@ extension AGGraph {
         public var changeCount: Int
         public var transactionCount: Int
         public var updateCount: Int
-        public var subgraphs: [SubGraph]
+        public var subgraphs: [Subgraph]
         public var nodes: [Node]
         public var edges: [Edge]
         public var trees: [Tree]
@@ -27,12 +27,12 @@ extension AGGraph {
 }
 
 extension AGGraph {
-    public struct SubGraph: Codable {
+    public struct Subgraph: Codable {
         public var contextId: Int
         public var id: Int
         public var nodes: [Int]
-        public var parents: [Int]
-        public var children: [Int]
+        public var parents: [Int]?
+        public var children: [Int]?
     }
 }
 
@@ -58,11 +58,25 @@ extension AGGraph {
 
 extension AGGraph {
     public struct Tree: Codable {
-        public var children: [Int]
-        public var desc: String
-        public var flags: Int
+        public var children: [Int]?
+        public var desc: String?
+        public var flags: Int?
+        public var node: Int?
+        public var nodes: [Int]?
+        public var offset: Int?
+        public var creator: Int?
+        public var value: Value?
+    }
+}
+
+extension AGGraph {
+    public struct Value: Codable {
+        public var environment: ValueNode
+        public var phase: ValueNode
+    }
+    
+    public struct ValueNode: Codable {
         public var node: Int
-        public var offset: Int
     }
 }
 
