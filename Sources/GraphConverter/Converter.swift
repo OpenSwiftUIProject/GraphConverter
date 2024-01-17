@@ -44,8 +44,10 @@ extension AGGraph.Edge {
 extension AGGraph.Subgraph {
     func converted(in agGraph: AGGraph.Graph) -> Subgraph {
         var subgraph = Subgraph(id: id.description)
-        for node in nodes {
-            subgraph.append(agGraph.nodes[node].converted(in: agGraph))
+        if let nodes {
+            for node in nodes {
+                subgraph.append(agGraph.nodes[node].converted(in: agGraph))
+            }            
         }
         return subgraph
     }

@@ -21,7 +21,7 @@ extension AGGraph {
         public var subgraphs: [Subgraph]
         public var nodes: [Node]
         public var edges: [Edge]
-        public var trees: [Tree]
+        public var trees: [Tree]?
         public var types: [Type]
     }
 }
@@ -30,7 +30,7 @@ extension AGGraph {
     public struct Subgraph: Codable {
         public var contextId: Int
         public var id: Int
-        public var nodes: [Int]
+        public var nodes: [Int]?
         public var parents: [Int]?
         public var children: [Int]?
     }
