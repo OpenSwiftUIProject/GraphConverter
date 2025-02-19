@@ -3,10 +3,10 @@
     {
       "identity" : "graphviz",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SwiftDocOrg/GraphViz.git",
+      "location" : "https://github.com/Kyle-Ye/GraphViz.git",
       "state" : {
-        "revision" : "74b6cbd8c5ecea9f64d84c4e1c88d65604dd033f",
-        "version" : "0.4.1"
+        "revision" : "e51545e6763429ebfddd474a6feffe5cbcec9f82",
+        "version" : "0.4.2"
       }
     },
     {

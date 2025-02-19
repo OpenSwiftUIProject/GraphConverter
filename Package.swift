@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
-        .package(url: "https://github.com/SwiftDocOrg/GraphViz.git", from: "0.4.1"),
+        .package(url: "https://github.com/Kyle-Ye/GraphViz.git", from: "0.4.2"),
     ],
     targets: [
         .executableTarget(
